@@ -1,5 +1,4 @@
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -7,30 +6,49 @@
     app:cardBackgroundColor="@color/primary_500"
     app:cardCornerRadius="12dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="20dp"
-        android:gravity="left"
-        android:orientation="horizontal">
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="20dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="10dp"
+            android:id="@+id/civ_profile"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/avatar" />
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/avatar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/text_name"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Health Lovers"
-            android:fontFamily="@font/poppins_bold"
-            android:textSize="20sp"
-            android:textColor="@color/neutral_50"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"/>
-    </LinearLayout>
+            android:layout_marginStart="16dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/civ_profile"
+            app:layout_constraintStart_toEndOf="@id/civ_profile"
+            app:layout_constraintTop_toTopOf="@id/civ_profile">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Hello Health Lovers"
+                android:textColor="@color/neutral_50"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_greeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:text="How is your health today?"
+                android:textColor="@color/neutral_50"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
