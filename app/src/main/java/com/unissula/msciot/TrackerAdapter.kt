@@ -26,6 +26,7 @@ class TrackerAdapter(private val items: List<TrackerData>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
+
     }
 
     override fun getItemCount(): Int {
