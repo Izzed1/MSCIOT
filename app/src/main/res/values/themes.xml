@@ -6,7 +6,11 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary_500</item>
         <item name="colorPrimaryVariant">@color/primary_500</item>
-        <item name="colorOnPrimary">@color/neutral_50</item>>
+        <item name="colorOnPrimary">@color/neutral_50</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/primary_500</item>
+        <item name="colorSecondaryVariant">@color/primary_500</item>
+        <item name="colorOnSecondary">@color/neutral_900</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/primary_500</item>
         <!-- Customize your theme here. -->
