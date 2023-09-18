@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/iv_icon_item"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_height" />
@@ -16,30 +16,29 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="12dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/iv_icon_item"
         app:layout_constraintStart_toEndOf="@id/iv_icon_item"
         app:layout_constraintTop_toTopOf="@id/iv_icon_item">
 
         <TextView
+            android:id="@+id/tv_title_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             tools:text="Height" />
 
         <TextView
+            android:id="@+id/tv_value_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/roboto_regular"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             tools:text="170 cm" />
-
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
