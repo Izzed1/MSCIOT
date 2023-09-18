@@ -26,12 +26,22 @@
             app:tint="@color/white" />
 
         <TextView
-            android:id="@+id/textViewBeratBadan"
+            android:id="@+id/textViewTanggal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/poppins_regular"
             android:textColor="@color/white"
             android:text="Senin, 17 Desember" />
+
+        <TextView
+            android:id="@+id/textViewJam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/white"
+            android:text="14:00" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
