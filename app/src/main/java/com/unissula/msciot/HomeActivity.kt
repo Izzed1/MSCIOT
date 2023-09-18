@@ -43,6 +43,7 @@ class HomeActivity : AppCompatActivity() {
         val rvTrakerHealth: RecyclerView = findViewById(R.id.rv_history)
         val trackerDataAdapter = TrackerAdapter(trackerDataItems)
 
+
         rvTrakerHealth.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rvTrakerHealth.adapter = trackerDataAdapter
     }
