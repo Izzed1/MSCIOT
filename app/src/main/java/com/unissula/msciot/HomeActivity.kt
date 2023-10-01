@@ -1,5 +1,6 @@
 package com.unissula.msciot
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
@@ -33,15 +34,21 @@ class HomeActivity : AppCompatActivity() {
 
     private fun HistoryData() {
         val trackerDataItems = listOf(
-            TrackerData(1,"17 September 2023","17:00","170 Cm","65 Kg","30","120/90","19%"),
-            TrackerData(2,"16 September 2023","11:20","170 Cm","65 Kg","30","120/90","19%"),
-            TrackerData(3,"15 September 2023","12:06","170 Cm","65 Kg","30","120/90","19%"),
-            TrackerData(4,"14 September 2023","08:45","170 Cm","65 Kg","30","120/90","19%"),
-            TrackerData(5,"13 September 2023","23:52","170 Cm","65 Kg","30","120/90","19%"),
+            TrackerData(1,"17 September 2023","17:00",R.drawable.ic_height, "Height", "170 cm"),
+            TrackerData(2,"16 September 2023","11:20",R.drawable.ic_weight, "Weight", "70 kg"),
+            TrackerData(3,"15 September 2023","12:06",R.drawable.ic_fat, "Fat", "15%"),
+            TrackerData(4,"14 September 2023","08:45",R.drawable.ic_blood_pressure, "Blood Pressure", "120/80 mmHg"),
+            TrackerData(5,"13 September 2023","23:52",R.drawable.ic_temperature, "Temperature", "37°C"),
         )
 
         val rvTrakerHealth: RecyclerView = findViewById(R.id.rv_history)
         val trackerDataAdapter = TrackerAdapter(trackerDataItems)
+        trackerDataAdapter.setOnItemClickListener { selectedItem ->
+            // Handle item click here, you can start DetailActivity with the selected item's data
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("tracker_data", selectedItem)
+            startActivity(intent)
+        }
 
         rvTrakerHealth.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rvTrakerHealth.adapter = trackerDataAdapter
