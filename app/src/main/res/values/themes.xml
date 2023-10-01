@@ -3,6 +3,13 @@
     <style name="Base.Theme.MSCIOT" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary_500</item>
+        <item name="colorPrimaryVariant">@color/primary_500</item>
+        <item name="colorOnPrimary">@color/neutral_50</item>>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/primary_500</item>
+        <!-- Customize your theme here. -->
     </style>a
 
     <style name="Theme.MSCIOT" parent="Base.Theme.MSCIOT" />

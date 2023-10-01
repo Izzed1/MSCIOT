@@ -3,6 +3,7 @@ package com.unissula.msciot
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class HomeActivity : AppCompatActivity() {
@@ -11,6 +12,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         HealthData()
+        HistoryData()
     }
 
     private fun HealthData() {
@@ -27,5 +29,21 @@ class HomeActivity : AppCompatActivity() {
 
         rvDataHealth.layoutManager = GridLayoutManager(this, 2)
         rvDataHealth.adapter = healthDataAdapter
+    }
+
+    private fun HistoryData() {
+        val trackerDataItems = listOf(
+            TrackerData(1,"17 September 2023","17:00","170 Cm","65 Kg","30","120/90","19%"),
+            TrackerData(2,"16 September 2023","11:20","170 Cm","65 Kg","30","120/90","19%"),
+            TrackerData(3,"15 September 2023","12:06","170 Cm","65 Kg","30","120/90","19%"),
+            TrackerData(4,"14 September 2023","08:45","170 Cm","65 Kg","30","120/90","19%"),
+            TrackerData(5,"13 September 2023","23:52","170 Cm","65 Kg","30","120/90","19%"),
+        )
+
+        val rvTrakerHealth: RecyclerView = findViewById(R.id.rv_history)
+        val trackerDataAdapter = TrackerAdapter(trackerDataItems)
+
+        rvTrakerHealth.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvTrakerHealth.adapter = trackerDataAdapter
     }
 }
