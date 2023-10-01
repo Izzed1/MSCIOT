@@ -53,12 +53,10 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_data_health"
-                app:spanCount="2"
                 tools:itemCount="5"
                 tools:listitem="@layout/item_data_health" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
             <Button
                 android:id="@+id/btn_refresh"
                 style="?attr/materialIconButtonFilledStyle"
@@ -72,10 +70,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_data_health" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
-
