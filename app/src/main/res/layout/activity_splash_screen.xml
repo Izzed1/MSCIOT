@@ -13,7 +13,7 @@
         android:id="@+id/iv_logo"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:src="@drawable/img_onboarding_2" />
+        android:src="@drawable/ic_msciot" />
 
     <TextView
         android:id="@+id/tv_msciot"

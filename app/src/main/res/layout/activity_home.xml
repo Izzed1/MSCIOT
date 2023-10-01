@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,66 +8,74 @@
     android:background="@color/white"
     tools:context=".HomeActivity">
 
-    <include
-        android:id="@+id/incl_header"
-        layout="@layout/item_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ll_data_health"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/incl_header">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_title_data_health"
-            android:layout_width="wrap_content"
+        <include
+            android:id="@+id/incl_header"
+            layout="@layout/item_profile"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Your Data Health"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:layout_margin="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_data_health"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_data_health"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title_data_health"
-            app:spanCount="2"
-            tools:itemCount="5"
-            tools:listitem="@layout/item_data_health" />
+            app:layout_constraintTop_toBottomOf="@id/incl_header">
 
-        <Button
-            android:id="@+id/btn_refresh"
-            style="?attr/materialIconButtonFilledStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/primary_500"
-            android:contentDescription="button refresh"
-            android:padding="15dp"
-            app:icon="@drawable/ic_refresh"
-            app:layout_constraintTop_toBottomOf="@id/rv_data_health"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView
+                android:id="@+id/tv_title_data_health"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Your Data Health"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_data_health"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_data_health"
+                app:spanCount="2"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_data_health" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btn_refresh"
+                style="?attr/materialIconButtonFilledStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/primary_500"
+                android:contentDescription="button refresh"
+                android:padding="15dp"
+                app:icon="@drawable/ic_refresh"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_data_health" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
