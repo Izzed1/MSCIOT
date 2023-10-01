@@ -1,4 +1,4 @@
-package com.mediform.app.retrofit
+package com.unissula.msciot.retrofit
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
