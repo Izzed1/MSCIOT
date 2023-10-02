@@ -1,5 +1,6 @@
 package com.unissula.msciot.retrofit
 
+import com.unissula.msciot.data.retrofit.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

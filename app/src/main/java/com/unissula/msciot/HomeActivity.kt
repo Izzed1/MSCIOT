@@ -3,54 +3,87 @@ package com.unissula.msciot
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.unissula.msciot.data.TrackData
+import com.unissula.msciot.data.retrofit.ApiService
+import com.unissula.msciot.retrofit.ApiClient
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
 
 class HomeActivity : AppCompatActivity() {
+
+    private lateinit var rv_data_health: RecyclerView
+    private lateinit var apiService: ApiService
+    private lateinit var trackAdapter: HealthDataAdapter
+    lateinit var trackList: ArrayList<TrackData>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        HealthData()
-        HistoryData()
+        trackList = ArrayList()
+
+        rv_data_health = findViewById(R.id.rv_data_health)
+        rv_data_health.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false )
+        fetchDataTracker()
+
     }
+    private fun fetchDataTracker() {
+        // on below line we are creating a retrofit
+        // builder and passing our base url
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://msciotfix20231001153820.azurewebsites.net")
+            // on below line we are calling add
+            // Converter factory as Gson converter factory.
+            // at last we are building our retrofit builder.
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
-    private fun HealthData() {
-        val healthDataItems = listOf(
-            HealthDataItem(R.drawable.ic_height, "Height", "170 cm"),
-            HealthDataItem(R.drawable.ic_weight, "Weight", "70 kg"),
-            HealthDataItem(R.drawable.ic_fat, "Fat", "15%"),
-            HealthDataItem(R.drawable.ic_blood_pressure, "Blood Pressure", "120/80 mmHg"),
-            HealthDataItem(R.drawable.ic_temperature, "Temperature", "37°C")
-        )
+        // below line is to create an instance for our retrofit api class.
+        val retrofitAPI = retrofit.create(ApiService::class.java)
 
-        val rvDataHealth: RecyclerView = findViewById(R.id.rv_data_health)
-        val healthDataAdapter = HealthDataAdapter(healthDataItems)
+        // on below line we are calling a method to get all the courses from API.
+        val call: Call<ArrayList<TrackData>?>? = retrofitAPI.getAllDataTracker()
 
-        rvDataHealth.layoutManager = GridLayoutManager(this, 2)
-        rvDataHealth.adapter = healthDataAdapter
-    }
+        // on below line we are calling method to enqueue and calling
+        // all the data from array list.
+        call!!.enqueue(object : Callback<ArrayList<TrackData>?> {
+            override fun onResponse(
+                call: Call<ArrayList<TrackData>?>,
+                response: Response<ArrayList<TrackData>?>
+            ) {
+                if (response.isSuccessful) {
+                    trackList = response.body()!!
+                }
 
-    private fun HistoryData() {
-        val trackerDataItems = listOf(
-            TrackerData(1,"17 September 2023","17:00",R.drawable.ic_height, "Height", "170 cm"),
-            TrackerData(2,"16 September 2023","11:20",R.drawable.ic_weight, "Weight", "70 kg"),
-            TrackerData(3,"15 September 2023","12:06",R.drawable.ic_fat, "Fat", "15%"),
-            TrackerData(4,"14 September 2023","08:45",R.drawable.ic_blood_pressure, "Blood Pressure", "120/80 mmHg"),
-            TrackerData(5,"13 September 2023","23:52",R.drawable.ic_temperature, "Temperature", "37°C"),
-        )
+                // on below line we are initializing our adapter.
+                trackAdapter = HealthDataAdapter(trackList)
 
-        val rvTrakerHealth: RecyclerView = findViewById(R.id.rv_history)
-        val trackerDataAdapter = TrackerAdapter(trackerDataItems)
-        trackerDataAdapter.setOnItemClickListener { selectedItem ->
-            // Handle item click here, you can start DetailActivity with the selected item's data
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra("tracker_data", selectedItem)
-            startActivity(intent)
-        }
+                // on below line we are setting adapter to recycler view.
+                rv_data_health.adapter = trackAdapter
 
-        rvTrakerHealth.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        rvTrakerHealth.adapter = trackerDataAdapter
+            }
+
+            override fun onFailure(call: Call<ArrayList<TrackData>?>, t: Throwable) {
+                // displaying an error message in toast
+                Toast.makeText(this@HomeActivity, "Fail to get the data..", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
     }
 }
+
