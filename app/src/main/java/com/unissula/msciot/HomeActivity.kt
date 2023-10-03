@@ -31,11 +31,12 @@ class HomeActivity : AppCompatActivity() {
 
         apiService = ApiClient.getInstance()
         rv_data_health = findViewById(R.id.rv_data_health)
-        rv_data_health.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false )
+        rv_data_health.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false )
         fetchDataTracker()
 
+
     }
-    private fun fetchDataTracker() {
+    private fun fetchDataTrackerbyID() {
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val response = apiService.getDataTracker()
@@ -67,5 +68,23 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    private fun fetchDataTracker() {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val response = apiService.getAllDataTracker()
+                if (response.isNotEmpty()) {
+                    // Jika response tidak kosong, Anda dapat langsung menggunakan datanya
+                    trackAdapter = HealthDataAdapter(response)
+                    rv_data_health.adapter = trackAdapter
+                } else {
+                    Toast.makeText(this@HomeActivity, "No data available", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this@HomeActivity, "Failed to fetch data", Toast.LENGTH_SHORT).show()
+                Log.d("API_FETCH_ERROR", e.toString())
+            }
+        }
+    }
 
 }
