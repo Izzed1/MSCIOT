@@ -1,10 +1,13 @@
 package com.unissula.msciot.retrofit
 
+import com.google.gson.GsonBuilder
+import com.unissula.msciot.data.DateDeserializer
 import com.unissula.msciot.data.retrofit.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.Date
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
@@ -18,10 +21,13 @@ object ApiClient {
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
             .build()
+        val gson = GsonBuilder()
+            .registerTypeAdapter(Date::class.java, DateDeserializer())
+            .create()
         val retrofit = Retrofit.Builder()
             .baseUrl(SERVER_URL)
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 
         return retrofit.create(ApiService::class.java)

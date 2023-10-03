@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.unissula.msciot.data.TrackData
 import com.unissula.msciot.data.TrackDataResponse
 
-class HealthDataAdapter(private val trackData: List<TrackData>) : RecyclerView.Adapter<HealthDataAdapter.ViewHolder>() {
+class HealthDataAdapter(private var trackData: List<TrackData>) : RecyclerView.Adapter<HealthDataAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_data_health, parent, false)
@@ -24,6 +24,10 @@ class HealthDataAdapter(private val trackData: List<TrackData>) : RecyclerView.A
     override fun getItemCount(): Int {
         return trackData.size
     }
+    fun updateData(newData: List<TrackData>) {
+        trackData = newData
+        notifyDataSetChanged()
+    }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val dateTextView: TextView = itemView.findViewById(R.id.tv_date)
@@ -37,6 +41,10 @@ class HealthDataAdapter(private val trackData: List<TrackData>) : RecyclerView.A
             dateTextView.text = trackData.createdAt.toString()
             heightTextView.text = trackData.height.toString()
             weightTextView.text = trackData.weight.toString()
+            fatTextView.text = trackData.fat.toString()
+            tempratureTextView.text = trackData.height.toString()
+            bloodPressureTextView.text = trackData.weight.toString()
+
         }
     }
 }
