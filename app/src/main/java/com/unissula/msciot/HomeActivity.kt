@@ -9,15 +9,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
 import com.unissula.msciot.data.TrackData
-import com.unissula.msciot.data.TrackDataResponse
 import com.unissula.msciot.data.retrofit.ApiService
 import com.unissula.msciot.retrofit.ApiClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
+import java.text.SimpleDateFormat
 
 class HomeActivity : AppCompatActivity() {
 
@@ -39,12 +39,24 @@ class HomeActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val response = apiService.getDataTracker()
-                if (response.status == "Success") {
-                    val trackDataArray = response.data // This is a JSON array
+                if (response != null) {
+                    if (response.idUser != null && response.height != null && response.weight != null) {
+                        val trackData = TrackData(
+                            response.idUser,
+                            response.height,
+                            response.weight,
+                            response.fat,
+                            response.temprature,
+                            response.bloodPressure,
+                            response.createdAt
+                        )
 
-                    // Create an adapter and set the data to the RecyclerView
-                    trackAdapter = trackDataArray?.let { HealthDataAdapter(it) }!!
-                    rv_data_health.adapter = trackAdapter
+                        // Create an adapter and set the data to the RecyclerView
+                        trackAdapter = HealthDataAdapter(listOf(trackData))
+                        rv_data_health.adapter = trackAdapter
+                    } else {
+                        Toast.makeText(this@HomeActivity, "Data is incomplete", Toast.LENGTH_SHORT).show()
+                    }
                 } else {
                     Toast.makeText(this@HomeActivity, "Failed to fetch data", Toast.LENGTH_SHORT).show()
                 }
@@ -55,5 +67,5 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-}
 
+}

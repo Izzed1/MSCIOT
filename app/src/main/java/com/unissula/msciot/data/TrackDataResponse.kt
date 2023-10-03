@@ -1,15 +1,30 @@
 package com.unissula.msciot.data
 
 import com.google.gson.annotations.SerializedName
+import java.util.Date
 
 data class TrackDataResponse(
-    @field:SerializedName("status")
-    val status: String? = null,
-    @field:SerializedName("message")
-    val message: String? = null,
-    @field:SerializedName("data")
-    val data: List<TrackData>? = null
+    @field:SerializedName("idUser")
+    val idUser: Int? = null,
 
-)
+    @field:SerializedName("height")
+    val height:Double? = null,
+
+    @field:SerializedName("weight")
+    val weight: Double? = null,
+
+    @field:SerializedName("fat")
+    val fat: Double? = null,
+
+    @field:SerializedName("temprature")
+    val temprature: Double? = null,
+
+    @field:SerializedName("bloodPressure")
+    val bloodPressure: Double? = null,
+
+    @field:SerializedName("createdAt")
+    val createdAt: Date? = null,
+
+    )
 
 

@@ -8,10 +8,7 @@ import retrofit2.http.*
 
 
 interface ApiService {
-    @GET("api/UserModels")
+    @GET("api/UserModels/1")
     suspend fun getDataTracker(): TrackDataResponse
-
-    @GET("api/UserModels")
-    fun getAllDataTracker(): Call<ArrayList<TrackData>?>?
 
 }
