@@ -8,6 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.unissula.msciot.data.TrackData
 import com.unissula.msciot.data.TrackDataResponse
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.TimeZone
 
 class HealthDataAdapter(private var trackData: List<TrackData>) : RecyclerView.Adapter<HealthDataAdapter.ViewHolder>() {
 
@@ -19,6 +22,11 @@ class HealthDataAdapter(private var trackData: List<TrackData>) : RecyclerView.A
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val trackItem = trackData[position]
         holder.bind(trackItem)
+        val dateFormat = SimpleDateFormat("EEE MMM dd HH:mm:ss", Locale.US) // Set locale to English (United States)
+        dateFormat.timeZone = TimeZone.getTimeZone("GMT+7") // Atur zona waktu ke GMT+7
+        val formattedDate = dateFormat.format(trackItem.createdAt)
+
+        holder.dateTextView.text = formattedDate
     }
 
     override fun getItemCount(): Int {
@@ -30,7 +38,7 @@ class HealthDataAdapter(private var trackData: List<TrackData>) : RecyclerView.A
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val dateTextView: TextView = itemView.findViewById(R.id.tv_date)
+        val dateTextView: TextView = itemView.findViewById(R.id.tv_date)
         private val heightTextView: TextView = itemView.findViewById(R.id.tv_height)
         private val weightTextView: TextView = itemView.findViewById(R.id.tv_weight)
         private val fatTextView: TextView = itemView.findViewById(R.id.tv_fat)
@@ -42,8 +50,8 @@ class HealthDataAdapter(private var trackData: List<TrackData>) : RecyclerView.A
             heightTextView.text = trackData.height.toString()
             weightTextView.text = trackData.weight.toString()
             fatTextView.text = trackData.fat.toString()
-            tempratureTextView.text = trackData.height.toString()
-            bloodPressureTextView.text = trackData.weight.toString()
+            tempratureTextView.text = trackData.temprature.toString()
+            bloodPressureTextView.text = trackData.bloodPressure.toString()
 
         }
     }
