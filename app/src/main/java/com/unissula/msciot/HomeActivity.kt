@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
@@ -34,7 +35,10 @@ class HomeActivity : AppCompatActivity() {
         rv_data_health.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false )
         fetchDataTracker()
 
-
+        val fab: FloatingActionButton = findViewById(R.id.fab_refresh)
+        fab.setOnClickListener {
+            fetchDataTracker()
+        }
     }
     private fun fetchDataTrackerbyID() {
         CoroutineScope(Dispatchers.Main).launch {
