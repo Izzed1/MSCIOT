@@ -5,25 +5,25 @@ import java.util.Date
 
 data class TrackData(
 
-   // @field:SerializedName("idUser")
+   @field:SerializedName("idUser")
     val idUser: Int,
 
-   // @field:SerializedName("height")
+   @field:SerializedName("height")
     val height:Double,
 
-    //@field:SerializedName("weight")
+    @field:SerializedName("weight")
     val weight: Double,
 
-    //@field:SerializedName("fat")
+    @field:SerializedName("fat")
     val fat: Double,
 
-    //@field:SerializedName("temprature")
+    @field:SerializedName("temprature")
     val temprature: Double,
 
-   // @field:SerializedName("bloodPressure")
+   @field:SerializedName("bloodPressure")
     val bloodPressure: Double,
 
-    //@field:SerializedName("createdAt")
+    @field:SerializedName("createdAt")
     val createdAt: Date,
 
 
